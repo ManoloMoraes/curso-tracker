@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Curso Tracker</title>
+    <meta name="description" content="App minimalista para acompanhar seu progresso em cursos online. Self-hosted." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <div class="sidebar-header">
+          <span class="logo">🎓</span>
+          <span class="brand">Curso Tracker</span>
+        </div>
+
+        <div class="add-block">
+          <button id="btnAddCourse" class="btn primary">+ Novo curso</button>
+        </div>
+
+        <div id="courseTree" class="tree"></div>
+
+        <footer class="sidebar-footer">
+          <button id="themeToggle" class="btn ghost" title="Alternar tema (claro/escuro)">🌓 Tema</button>
+          <a class="btn ghost" href="/docs" target="_blank" title="API docs (FastAPI)">API</a>
+        </footer>
+      </aside>
+
+      <main id="main">
+        <header class="topbar">
+          <input id="searchInput" class="search" placeholder="Pesquisar cursos/módulos..." />
+        </header>
+
+        <section id="homeView" class="view active">
+          <h1>Cursos em andamento</h1>
+          <div id="courseCards" class="cards"></div>
+        </section>
+
+        <section id="moduleView" class="view">
+          <div class="crumbs">
+            <a href="#" id="backHome">← Voltar</a>
+            <span id="crumbCourse"></span>
+            <span class="sep">›</span>
+            <span id="crumbModule"></span>
+          </div>
+
+          <div id="moduleHeader" class="module-header">
+            <div class="module-meta">
+              <h2 id="moduleTitle">Módulo</h2>
+              <div class="muted" id="moduleStats"></div>
+              <div class="progress">
+                <div class="progress-bar" id="moduleProgress" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="module-actions">
+              <button id="btnMarkAll" class="btn">Marcar tudo como assistido</button>
+              <button id="btnUnmarkAll" class="btn ghost">Desmarcar tudo</button>
+            </div>
+          </div>
+
+          <div id="lessonGrid" class="grid"></div>
+
+          <div class="logs">
+            <h3>Histórico recente</h3>
+            <ul id="logList"></ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Dialogs -->
+    <dialog id="dlgCourse">
+      <form method="dialog" id="formCourse" class="dialog">
+        <h3>Novo curso</h3>
+        <label>Título do curso
+          <input name="title" placeholder="Ex.: Docker e Coolify" required />
+        </label>
+        <label>URL da imagem (opcional)
+          <input name="image_url" placeholder="https://..." />
+        </label>
+        <menu>
+          <button value="cancel" class="btn ghost">Cancelar</button>
+          <button value="ok" class="btn primary">Salvar</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="dlgModule">
+      <form method="dialog" id="formModule" class="dialog">
+        <h3>Novo módulo</h3>
+        <label>Título do módulo
+          <input name="title" placeholder="Ex.: Publicação no Coolify" required />
+        </label>
+        <label>Quantidade de aulas
+          <input name="lesson_count" type="number" min="1" max="2000" value="10" required />
+        </label>
+        <menu>
+          <button value="cancel" class="btn ghost">Cancelar</button>
+          <button value="ok" class="btn primary">Salvar</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="/assets/app.js"></script>
+  </body>
+</html>

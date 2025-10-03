@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  curso-tracker:
+    build: .
+    container_name: curso-tracker
+    ports:
+      - "8080:8080"
+    environment:
+      - TZ=America/Sao_Paulo
+    volumes:
+      - curso_tracker_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  curso_tracker_data:
