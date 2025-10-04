@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Frontend - Servidor web estático
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/usr/share/nginx/html
+    depends_on:
+      - backend
+    networks:
+      - curso-tracker-network
+
+  # Backend - API Node.js
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=curso_tracker
+      - DB_PORT=5432
+    depends_on:
+      - postgres
+    networks:
+      - curso-tracker-network
+
+  # Banco de dados PostgreSQL
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=curso_tracker
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - curso-tracker-network
+
+networks:
+  curso-tracker-network:
+    driver: bridge
+
+volumes:
+  postgres-data:

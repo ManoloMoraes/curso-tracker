@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Curso Tracker</h1>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <div class="courses-header">
+                    <h2>Meus Cursos</h2>
+                    <button id="add-course-btn" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <ul id="courses-list" class="courses-list">
+                    <!-- Cursos serão adicionados dinamicamente aqui -->
+                </ul>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div id="home-view" class="view active">
+                <h2>Cursos em Andamento</h2>
+                <div id="ongoing-courses" class="ongoing-courses">
+                    <!-- Cursos em andamento serão exibidos aqui -->
+                </div>
+            </div>
+            <div id="course-view" class="view">
+                <!-- Detalhes do curso serão exibidos aqui -->
+            </div>
+            <div id="module-view" class="view">
+                <!-- Aulas do módulo serão exibidas aqui -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para adicionar/editar cursos -->
+    <div id="course-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Adicionar Curso</h2>
+            <form id="course-form">
+                <div class="form-group">
+                    <label for="course-name">Nome do Curso</label>
+                    <input type="text" id="course-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="course-image">URL da Imagem</label>
+                    <input type="text" id="course-image" placeholder="https://exemplo.com/imagem.jpg">
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar módulos -->
+    <div id="module-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="module-modal-title">Adicionar Módulo</h2>
+            <form id="module-form">
+                <div class="form-group">
+                    <label for="module-name">Nome do Módulo</label>
+                    <input type="text" id="module-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lesson-count">Número de Aulas</label>
+                    <input type="number" id="lesson-count" min="1" required>
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
